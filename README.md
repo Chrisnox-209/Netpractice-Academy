@@ -288,3 +288,7 @@ Les corrections pédagogiques, nouveaux visualiseurs et nouveaux scénarios sont
 ---
 
 **Mots-clés :** NetPractice 42, tutoriel NetPractice, cours NetPractice, IPv4, subnetting, sous-réseaux, CIDR, masque de sous-réseau, gateway, passerelle par défaut, routing, table de routage, VLSM, chevauchement de sous-réseaux, réseau informatique, 42 school.
+
+### Réinitialiser un exercice
+
+Dans l'interface **TRAINING**, le bouton **Reset all** remet **les 21 exercices** à zéro après confirmation : toutes les réponses enregistrées, validations et aides sont effacées, puis l'entraînement revient au niveau 1. Le choix de langue est conservé.

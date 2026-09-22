@@ -420,7 +420,7 @@
       var mode=practiceModeOf(l);
       return `<button class="level-pill ${l.id===state.level?'is-active':''} ${done?'is-done':''}" data-level="${l.id}" data-mode="${mode}" title="${esc(l.title)}"><span>${done?'✓':String(l.id).padStart(2,'0')}</span><div><strong>${esc(l.title)}</strong><small>${esc(l.difficulty)}</small></div></button>`;
     }).join("");
-    $("#view-practice").innerHTML=`<div class="practice-layout"><aside class="level-sidebar" id="practiceSidebar"><div class="sidebar-heading"><div><span class="eyebrow">Pratique</span><h2>${total} exercices</h2><p><strong id="sidebarProgress">${state.completed.length}</strong> terminés</p></div><button class="sidebar-collapse" id="collapseSidebar" type="button" aria-label="Réduire le menu">‹</button></div><div class="mode-switch" aria-label="Mode d'entraînement"><button class="is-active" data-practice-mode="all">Tous</button><button data-practice-mode="basics">Bases</button><button data-practice-mode="classic">NP</button><button data-practice-mode="complex">Complexe</button></div><div class="level-list">${list}</div><button id="resetProgress" class="text-btn muted">Réinitialiser</button></aside><section id="levelContent" class="level-content"></section></div>`;
+    $("#view-practice").innerHTML=`<div class="practice-layout"><aside class="level-sidebar" id="practiceSidebar"><div class="sidebar-heading"><div><span class="eyebrow">Pratique</span><h2>${total} exercices</h2><p><strong id="sidebarProgress">${state.completed.length}</strong> terminés</p></div><button class="sidebar-collapse" id="collapseSidebar" type="button" aria-label="Réduire le menu">‹</button></div><div class="mode-switch" aria-label="Mode d'entraînement"><button class="is-active" data-practice-mode="all">Tous</button><button data-practice-mode="basics">Bases</button><button data-practice-mode="classic">NP</button><button data-practice-mode="complex">Complexe</button></div><div class="level-list">${list}</div></aside><section id="levelContent" class="level-content"></section></div>`;
     applyPracticeMode();
     renderLevel(state.level);
   }
@@ -440,7 +440,7 @@
       <div class="story-card"><span>Goal</span><p>${esc(l.story)}</p></div>
       <div class="practice-workspace">
         <div id="levelForm" class="np-exercise">
-          <div class="np-toolbar"><div class="np-toolbar-left"><span class="np-status">TRAINING</span><strong>Level ${l.id}</strong><small>Complete the empty fields, then check your configuration.</small></div><div class="np-actions"><button class="np-action help" id="openHelp" type="button">Help</button><button class="np-action primary" id="checkConfig" type="button">Check again</button>${l.id < window.LEVELS.length ? `<button class="np-action next" id="nextLevel" type="button" ${state.completed.indexOf(l.id)!==-1?'':'hidden'}>Suivant →</button>` : ''}</div></div>
+          <div class="np-toolbar"><div class="np-toolbar-left"><span class="np-status">TRAINING</span><strong>Level ${l.id}</strong><small>Complete the empty fields, then check your configuration.</small></div><div class="np-actions"><button class="np-action reset-all" id="resetAllExercises" type="button">Reset all</button><button class="np-action help" id="openHelp" type="button">Help</button><button class="np-action primary" id="checkConfig" type="button">Check again</button>${l.id < window.LEVELS.length ? `<button class="np-action next" id="nextLevel" type="button" ${state.completed.indexOf(l.id)!==-1?'':'hidden'}>Suivant →</button>` : ''}</div></div>
           ${topology(l)}
           <div id="levelFeedback" class="np-log"><span>Log</span><p>No test has been run yet.</p></div>
         </div>
@@ -465,6 +465,19 @@
     $("#openHelp").addEventListener("click",function(){setHelp(true);});
     $("#closeHelp").addEventListener("click",function(){setHelp(false);});
     scrim.addEventListener("click",function(){setHelp(false);});
+    $("#resetAllExercises").addEventListener("click", function(){
+      var total = window.LEVELS.length;
+      if (!window.confirm("Réinitialiser les " + total + " exercices ? Toutes les réponses, validations et aides seront effacées.")) return;
+      state.completed = [];
+      state.drafts = {};
+      state.hints = {};
+      state.level = 1;
+      state.practiceMode = "all";
+      localStorage.removeItem("np-academy-completed");
+      localStorage.removeItem("np-academy-drafts");
+      updateHeaderProgress();
+      renderPractice();
+    });
     form.addEventListener("input", function(){ saveDraft(level.id, collectForm(form)); });
     form.addEventListener("focusin", function(e){
       if(!e.target.matches("input[data-help]")) return;
@@ -510,7 +523,6 @@
       var nav=e.target.closest("[data-nav], [data-go]"); if(nav){navigate(nav.dataset.nav||nav.dataset.go);return;}
       var level=e.target.closest("[data-level]"); if(level && level.matches("[data-level].level-pill")){renderLevel(level.dataset.level);return;}
       var toggle=e.target.closest(".course-toggle"); if(toggle){var body=toggle.parentElement.querySelector(".course-body"),open=body.classList.toggle("is-open");toggle.setAttribute("aria-expanded",open);return;}
-      if(e.target.id==="resetProgress"){state.completed=[];state.drafts={};localStorage.removeItem("np-academy-drafts");saveCompleted();renderPractice();}
     });
     $(".brand").addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" ")navigate("home");});
   }

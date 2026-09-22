@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Tutoriel NetPractice 42 pour apprendre IPv4, subnetting, CIDR, masques de sous-réseau, gateways et routage avec cours, visualiseurs et exercices interactifs.">
+  <meta name="keywords" content="NetPractice, NetPractice 42, tutoriel NetPractice, cours NetPractice, IPv4, subnetting, CIDR, masque de sous-réseau, gateway, routing, VLSM">
+  <meta name="theme-color" content="#f5f5f7">
+  <title>NetPractice Academy</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Aller au contenu</a>
+  <header class="topbar">
+    <div class="brand" data-nav="home" role="button" tabindex="0" aria-label="Retour à l'accueil">
+      <span class="brand-mark">NP</span>
+      <span><strong>NetPractice</strong><small>Academy</small></span>
+    </div>
+    <nav class="nav" aria-label="Navigation principale">
+      <button class="nav-btn is-active" data-nav="home" type="button">Accueil</button>
+      <button class="nav-btn" data-nav="course" type="button">Cours</button>
+      <button class="nav-btn" data-nav="lab" type="button">Laboratoire</button>
+      <button class="nav-btn" data-nav="practice" type="button">Pratique</button>
+    </nav>
+    <div class="header-tools">
+      <label class="language-picker" aria-label="Langue du site">
+        <span class="sr-only">Langue</span>
+        <select id="languageSelect" aria-label="Langue du site" autocomplete="off">
+          <option value="fr">FR</option>
+          <option value="en">EN</option>
+          <option value="es">ES</option>
+        </select>
+      </label>
+      <div class="progress-chip" title="Niveaux pratiques terminés">
+        <span id="headerProgress">0/21</span>
+        <span>niveaux</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="view-home" class="view is-active"></section>
+    <section id="view-course" class="view"></section>
+    <section id="view-lab" class="view"></section>
+    <section id="view-practice" class="view"></section>
+  </main>
+
+  <footer>
+    <p>NetPractice Academy — entraînement local, sans compte et sans serveur distant.</p>
+  </footer>
+
+  <script src="assets/js/network.js"></script>
+  <script src="assets/js/courses.js"></script>
+  <script src="assets/js/levels.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    (function () {
+      var select = document.getElementById("languageSelect");
+      if (!select || !window.NPI18N) return;
+      select.value = window.NPI18N.lang;
+      select.addEventListener("change", function () {
+        if (this.value !== window.NPI18N.lang) window.NPI18N.setLanguage(this.value);
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -203,3 +203,124 @@ footer{display:none}
   #view-practice .np-field input{height:38px;font-size:1rem}
   #view-practice .np-node small{font-size:.72rem}
 }
+
+/* Training typography pass — keep secondary teaching text readable. */
+#view-practice .np-toolbar{
+  min-height:56px;
+  padding:8px 10px 8px 14px;
+}
+#view-practice .np-toolbar-left{
+  gap:11px;
+  flex-wrap:wrap;
+}
+#view-practice .np-status{
+  padding:4px 7px;
+  font-size:.64rem;
+}
+#view-practice .np-toolbar strong{
+  font-size:.96rem;
+  line-height:1.2;
+}
+#view-practice .np-toolbar small{
+  color:#626267;
+  font-size:.82rem;
+  line-height:1.35;
+}
+#view-practice .np-action{
+  padding:7px 11px;
+  font-size:.72rem;
+}
+
+#view-practice .np-coach{
+  width:min(430px,44%);
+  padding:12px 14px;
+}
+#view-practice .np-coach span{
+  color:#62510d;
+  font-size:.68rem;
+  line-height:1.2;
+}
+#view-practice .np-coach p{
+  margin-top:5px;
+  color:#353538;
+  font-size:.84rem;
+  line-height:1.45;
+}
+
+#view-practice .story-card>span{
+  font-size:.68rem;
+}
+#view-practice .story-card p{
+  font-size:.9rem;
+  line-height:1.45;
+}
+#view-practice .level-head p{
+  font-size:.96rem;
+  line-height:1.5;
+}
+#view-practice .concept-tags span{
+  font-size:.68rem;
+}
+
+#view-practice .np-config-card header span{
+  font-size:.68rem;
+}
+#view-practice .np-config-card header strong{
+  font-size:.82rem;
+}
+#view-practice .np-field{
+  font-size:.76rem;
+}
+#view-practice .np-field input::placeholder{
+  font-size:.76rem;
+}
+
+#view-practice .np-log{
+  padding:12px 14px;
+}
+#view-practice .np-log>span{
+  font-size:.66rem;
+}
+#view-practice .np-log>p,
+#view-practice .np-log ul{
+  font-size:.78rem;
+  line-height:1.45;
+}
+#view-practice .np-log>strong{
+  font-size:.9rem;
+}
+
+#view-practice .help-drawer-head>div>span{
+  font-size:.72rem;
+}
+#view-practice .help-intro{
+  font-size:.9rem;
+  line-height:1.5;
+}
+#view-practice .help-drawer .hint span{
+  font-size:.68rem;
+}
+#view-practice .help-drawer .hint p,
+#view-practice .help-drawer .solution p{
+  font-size:.84rem;
+  line-height:1.5;
+}
+#view-practice .help-drawer .solution strong{
+  font-size:.86rem;
+}
+
+/* Keep the level picker compact, but no longer tiny. */
+#view-practice .level-pill strong{
+  font-size:.74rem;
+}
+#view-practice .level-pill small{
+  font-size:.63rem;
+}
+
+@media(max-width:760px){
+  #view-practice .np-toolbar strong{font-size:.9rem}
+  #view-practice .np-toolbar small{display:none}
+  #view-practice .np-coach{width:100%}
+  #view-practice .np-coach p{font-size:.88rem}
+  #view-practice .np-field{font-size:.8rem}
+}
